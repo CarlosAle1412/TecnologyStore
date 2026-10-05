@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Ventanas en línea - Laptops, tablets y PCs"
+    >
+
+    <title>Ventanas en línea</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- Fondo animado -->
+    <canvas id="fondo" aria-hidden="true"></canvas>
+
+    <!-- Barra de progreso -->
+    <div
+        class="progreso"
+        id="progreso"
+        aria-hidden="true"
+    ></div>
+
+    <!-- =====================================================
+         CABECERA
+    ====================================================== -->
+
+    <header class="cabecera" id="cabecera">
+
+        <a
+            href="#inicio"
+            class="logo"
+            aria-label="Ventanas en línea - Inicio"
+        >
+            Ventanas en línea
+        </a>
+
+        <button
+            class="btn-menu"
+            id="btnMenu"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menu"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav
+            class="menu-principal"
+            id="menu"
+            aria-label="Menú principal"
+        >
+            <ul class="menu">
+
+                <li>
+                    <a href="#inicio">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="#nosotros">Quiénes somos</a>
+                </li>
+
+                <li class="tiene-sub">
+
+                    <a href="#productos">
+                        Productos
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="#productos">Laptop</a>
+                        </li>
+
+                        <li>
+                            <a href="#productos">Tablet</a>
+                        </li>
+
+                        <li>
+                            <a href="#productos">PC</a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <li>
+                    <a href="#pedidos">
+                        Pedidos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#sucursales">
+                        Sucursales
+                    </a>
+                </li>
+
+                <li>
+                    <button
+                        class="btn-carrito-nav"
+                        id="btnCarrito"
+                        type="button"
+                        aria-label="Abrir carrito"
+                    >
+                        🛒
+                        <span>Carrito</span>
+                        <strong id="contador-carrito">0</strong>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section
+        class="hero"
+        id="inicio"
+    >
+
+        <div class="hero-contenido">
+
+            <p class="etiqueta">
+                TECNOLOGÍA DE NUEVA GENERACIÓN
+            </p>
+
+            <h1 class="hero-titulo">
+                Laptops, tablets y PCs para
+                <span
+                    class="escribiendo"
+                    id="escribiendo"
+                ></span>
+            </h1>
+
+            <p class="hero-texto">
+                Compra por unidad, por menor o por mayor,
+                agrega todos los equipos que necesites a tu
+                carrito y realiza una sola compra.
+            </p>
+
+            <div class="hero-botones">
+
+                <a
+                    class="btn btn-neon"
+                    href="#productos"
+                >
+                    Ver productos
+                </a>
+
+                <button
+                    class="btn btn-borde"
+                    type="button"
+                    id="btnHeroCarrito"
+                >
+                    Ver carrito
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Estadísticas -->
+
+        <ul
+            class="stats"
+            id="nosotros"
+        >
+
+            <li>
+                <strong
+                    data-contador="1200"
+                    data-sufijo="+"
+                >
+                    0
+                </strong>
+
+                <span>
+                    equipos entregados
+                </span>
+            </li>
+
+            <li>
+                <strong data-contador="5">
+                    0
+                </strong>
+
+                <span>
+                    sucursales en el Perú
+                </span>
+            </li>
+
+            <li>
+                <strong
+                    data-contador="98"
+                    data-sufijo="%"
+                >
+                    0
+                </strong>
+
+                <span>
+                    clientes satisfechos
+                </span>
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =====================================================
+         PRODUCTOS
+    ====================================================== -->
+
+    <main
+        class="contenedor"
+        id="productos"
+    >
+
+        <div class="encabezado-seccion">
+
+            <div>
+                <p class="etiqueta">
+                    CATÁLOGO
+                </p>
+
+                <h2 class="titulo-seccion">
+                    Inteligencia a tu medida
+                </h2>
+            </div>
+
+            <button
+                class="btn btn-borde"
+                type="button"
+                id="btnAbrirCarritoCatalogo"
+            >
+                🛒 Ver carrito
+            </button>
+
+        </div>
+
+
+        <!-- Filtros -->
+
+        <div
+            class="filtros-productos"
+            aria-label="Filtrar productos"
+        >
+
+            <button
+                class="filtro activo"
+                type="button"
+                data-categoria="todos"
+            >
+                Todos
+            </button>
+
+            <button
+                class="filtro"
+                type="button"
+                data-categoria="laptop"
+            >
+                💻 Laptops
+            </button>
+
+            <button
+                class="filtro"
+                type="button"
+                data-categoria="tablet"
+            >
+                📱 Tablets
+            </button>
+
+            <button
+                class="filtro"
+                type="button"
+                data-categoria="pc"
+            >
+                🖥️ PCs
+            </button>
+
+        </div>
+
+
+        <!-- Aquí JavaScript genera las tarjetas -->
+
+        <div
+            class="subcontenedor"
+            id="catalogo-productos"
+        ></div>
+
+    </main>
+
+
+    <!-- =====================================================
+         PEDIDOS
+    ====================================================== -->
+
+    <section
+        class="seccion-pedido"
+        id="pedidos"
+    >
+
+        <div class="pedido-contenido">
+
+            <div>
+
+                <p class="etiqueta">
+                    FINALIZAR COMPRA
+                </p>
+
+                <h2 class="titulo-seccion">
+                    Realiza tu pedido
+                </h2>
+
+                <p class="pedido-descripcion">
+                    Puedes comprar un producto o realizar
+                    una compra grande con varios equipos.
+                    Selecciona tus productos, indica las
+                    cantidades y completa tus datos.
+                </p>
+
+            </div>
+
+
+            <!-- Resumen -->
+
+            <div class="resumen-pedido">
+
+                <div class="resumen-cabecera">
+                    <span>
+                        Resumen del carrito
+                    </span>
+
+                    <strong id="resumen-cantidad">
+                        0 productos
+                    </strong>
+                </div>
+
+                <div
+                    id="resumen-items"
+                    class="resumen-items"
+                >
+                    <p class="carrito-vacio">
+                        Tu carrito está vacío.
+                    </p>
+                </div>
+
+                <div class="resumen-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="precio-total">
+                        S/ 0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Formulario -->
+
+            <form
+                id="form-pedido"
+                class="form-pedido"
+            >
+
+                <div class="campo">
+                    <label for="cliente-nombre">
+                        Nombre completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cliente-nombre"
+                        name="cliente"
+                        placeholder="Tu nombre"
+                        required
+                    >
+                </div>
+
+
+                <div class="campo">
+                    <label for="cliente-telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="cliente-telefono"
+                        name="telefono"
+                        placeholder="999 999 999"
+                        required
+                    >
+                </div>
+
+
+                <div class="campo">
+                    <label for="cliente-email">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="cliente-email"
+                        name="email"
+                        placeholder="correo@ejemplo.com"
+                        required
+                    >
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="sucursal">
+                        Sucursal para recoger
+                    </label>
+
+                    <select
+                        id="sucursal"
+                        name="sucursal"
+                        required
+                    >
+
+                        <option value="">
+                            -- Selecciona una sucursal --
+                        </option>
+
+                        <option value="Lima">
+                            Lima
+                        </option>
+
+                        <option value="Chiclayo">
+                            Chiclayo
+                        </option>
+
+                        <option value="Tarapoto">
+                            Tarapoto
+                        </option>
+
+                        <option value="Cajamarca">
+                            Cajamarca
+                        </option>
+
+                        <option value="Huancayo">
+                            Huancayo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo campo-completo">
+
+                    <label for="cliente-comentario">
+                        Comentarios del pedido
+                    </label>
+
+                    <textarea
+                        id="cliente-comentario"
+                        name="comentario"
+                        rows="4"
+                        placeholder="Indica alguna observación sobre tu pedido..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-acciones">
+
+                    <button
+                        type="button"
+                        class="btn btn-borde"
+                        id="btnLimpiarCarrito"
+                    >
+                        Vaciar carrito
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-neon"
+                    >
+                        Confirmar pedido
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUCURSALES
+    ====================================================== -->
+
+    <section
+        class="sucursales"
+        id="sucursales"
+    >
+
+        <p class="etiqueta">
+            ENCUÉNTRANOS
+        </p>
+
+        <h2 class="titulo-seccion">
+            Nuestras sucursales
+        </h2>
+
+        <div class="sucursales-grid">
+
+            <article>
+                <span>01</span>
+                <h3>Lima</h3>
+                <p>Atención y recojo de pedidos.</p>
+            </article>
+
+            <article>
+                <span>02</span>
+                <h3>Chiclayo</h3>
+                <p>Atención y recojo de pedidos.</p>
+            </article>
+
+            <article>
+                <span>03</span>
+                <h3>Tarapoto</h3>
+                <p>Atención y recojo de pedidos.</p>
+            </article>
+
+            <article>
+                <span>04</span>
+                <h3>Cajamarca</h3>
+                <p>Atención y recojo de pedidos.</p>
+            </article>
+
+            <article>
+                <span>05</span>
+                <h3>Huancayo</h3>
+                <p>Atención y recojo de pedidos.</p>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MODAL DE PRODUCTO
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="modal-producto"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-titulo"
+    >
+
+        <div class="modal-contenido">
+
+            <button
+                class="modal-cerrar"
+                id="cerrar-modal"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+            <div class="modal-grid">
+
+                <div class="modal-imagen-contenedor">
+
+                    <img
+                        id="modal-img"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="modal-info">
+
+                    <p class="etiqueta">
+                        DETALLES DEL PRODUCTO
+                    </p>
+
+                    <h2 id="modal-titulo">
+                        Producto
+                    </h2>
+
+                    <div
+                        class="modal-precio"
+                        id="modal-precio"
+                    >
+                        S/ 0.00
+                    </div>
+
+                    <p
+                        id="modal-descripcion"
+                        class="modal-descripcion"
+                    ></p>
+
+                    <h3>
+                        Especificaciones
+                    </h3>
+
+                    <ul
+                        id="modal-specs"
+                        class="modal-specs"
+                    ></ul>
+
+                    <div class="modal-acciones">
+
+                        <div class="cantidad-control">
+
+                            <button
+                                type="button"
+                                id="modal-menos"
+                                aria-label="Disminuir cantidad"
+                            >
+                                −
+                            </button>
+
+                            <input
+                                type="number"
+                                id="modal-cantidad"
+                                min="1"
+                                value="1"
+                                aria-label="Cantidad"
+                            >
+
+                            <button
+                                type="button"
+                                id="modal-mas"
+                                aria-label="Aumentar cantidad"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                        <button
+                            class="btn btn-neon"
+                            id="btn-agregar-modal"
+                            type="button"
+                        >
+                            Agregar al carrito
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CARRITO LATERAL
+    ====================================================== -->
+
+    <div
+        class="carrito-overlay"
+        id="carrito-overlay"
+        aria-hidden="true"
+    ></div>
+
+
+    <aside
+        class="carrito-panel"
+        id="carrito-panel"
+        aria-hidden="true"
+        aria-label="Carrito de compras"
+    >
+
+        <div class="carrito-header">
+
+            <div>
+                <p class="etiqueta">
+                    TU COMPRA
+                </p>
+
+                <h2>
+                    Mi carrito
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                id="cerrar-carrito"
+                class="carrito-cerrar"
+                aria-label="Cerrar carrito"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="carrito-items"
+            id="carrito-items"
+        >
+
+            <div class="carrito-vacio">
+
+                <span class="carrito-vacio-icono">
+                    🛒
+                </span>
+
+                <p>
+                    Tu carrito está vacío.
+                </p>
+
+                <small>
+                    Agrega productos para comenzar tu compra.
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="carrito-footer">
+
+            <div class="carrito-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="carrito-total">
+                    S/ 0.00
+                </strong>
+
+            </div>
+
+            <button
+                class="btn btn-neon btn-completo"
+                id="btnIrPedido"
+                type="button"
+            >
+                Continuar con el pedido
+            </button>
+
+            <button
+                class="btn btn-borde btn-completo"
+                id="btnVaciarCarrito"
+                type="button"
+            >
+                Vaciar carrito
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         BOTÓN SUBIR
+    ====================================================== -->
+
+    <button
+        class="subir"
+        id="subir"
+        type="button"
+        aria-label="Volver arriba"
+    >
+        ↑
+    </button>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="pie">
+
+        <p>
+            Ventanas en línea · Lima · Chiclayo ·
+            Tarapoto · Cajamarca · Huancayo
+        </p>
+
+        <p>
+            © 2026 Ventanas en línea
+        </p>
+
+    </footer>
+
+
+    <script src="index.js"></script>
+
+</body>
+</html>
